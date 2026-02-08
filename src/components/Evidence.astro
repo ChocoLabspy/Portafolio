@@ -1,0 +1,277 @@
+---
+interface EvidenceItem {
+  category: string;
+  icon: string;
+  title: string;
+  description: string;
+  link?: string;
+  linkLabel?: string;
+  verified: boolean;
+}
+
+const evidence: EvidenceItem[] = [
+  {
+    category: "Producto publicado",
+    icon: "🌐",
+    title: "JSON Formatter Pro en Chrome Web Store",
+    description: "Pasó la revisión de Google y está disponible para cualquiera. Se puede instalar desde la tienda.",
+    link: "https://chromewebstore.google.com/detail/JSON%20Formatter%20Pro/oldbplbcgfkkidgccdconiijmjeekobd?hl=es&authuser=0",
+    linkLabel: "Ver en Chrome Web Store",
+    verified: true,
+  },
+  {
+    category: "Producto live",
+    icon: "🚀",
+    title: "KitVia — plataforma de herramientas web",
+    description: "La web está online y funcionando. Puedes entrar y usar las herramientas.",
+    link: "https://kitvia.net",
+    linkLabel: "Visitar kitvia.net",
+    verified: true,
+  },
+  {
+    category: "Bot operativo",
+    icon: "🤖",
+    title: "DevBot — bot de Discord invitable",
+    description: "El bot funciona y lo puedes invitar a tu servidor. Se configura con modales directamente desde Discord.",
+    link: "https://discord.com/oauth2/authorize?client_id=1357614264441110569",
+    linkLabel: "Invitar bot a servidor",
+    verified: true,
+  },
+  {
+    category: "Competición",
+    icon: "🏆",
+    title: "Las Doce Uvas 2025 — 4º general, 1º Bachillerato",
+    description: "Competición de programación a nivel nacional. La clasificación está publicada.",
+    link: "https://las12uvas.es/2025/#/contest",
+    linkLabel: "Ver clasificación",
+    verified: true,
+  },
+  {
+    category: "Práctica de ingeniería",
+    icon: "📋",
+    title: "Control de versiones con Git",
+    description: "Uso Git en todos mis proyectos desde el principio. Commits, ramas, y todo el historial de cambios.",
+    verified: false,
+  },
+  {
+    category: "Práctica de ingeniería",
+    icon: "🧪",
+    title: "Validación y manejo de errores",
+    description: "DevBot valida las entradas de los modales, KitVia controla errores, y todas las herramientas intentan decirte qué ha ido mal.",
+    verified: false,
+  },
+];
+---
+
+<section id="evidencias" class="evidence">
+  <div class="container">
+    <div class="section-header">
+      <span class="section-label">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <path d="M9 11l3 3L22 4"/>
+          <path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"/>
+        </svg>
+        Evidencias
+      </span>
+      <h2>Compruébalo tú mismo</h2>
+      <p>Todo lo que digo tiene un enlace que lo demuestra</p>
+    </div>
+
+    <div class="evidence-grid">
+      {evidence.map((item, index) => (
+        <div class={`evidence-card ${item.verified ? 'verified' : ''}`} style={`--delay: ${index * 0.08}s`}>
+          <div class="evidence-top">
+            <span class="evidence-category">
+              {item.category}
+              {item.verified && <span class="verified-dot" title="Verificable con enlace directo">✓</span>}
+            </span>
+          </div>
+          <div class="evidence-body">
+            <span class="evidence-icon">{item.icon}</span>
+            <h3>{item.title}</h3>
+            <p>{item.description}</p>
+          </div>
+          {item.link && (
+            <a href={item.link} class="evidence-link" target="_blank" rel="noopener">
+              {item.linkLabel}
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/>
+                <polyline points="15 3 21 3 21 9"/>
+                <line x1="10" y1="14" x2="21" y2="3"/>
+              </svg>
+            </a>
+          )}
+        </div>
+      ))}
+    </div>
+
+    <div class="evidence-summary">
+      <div class="summary-item">
+        <span class="summary-number">4</span>
+        <span class="summary-label">enlaces verificables</span>
+      </div>
+      <div class="summary-divider"></div>
+      <div class="summary-item">
+        <span class="summary-number">3</span>
+        <span class="summary-label">productos live</span>
+      </div>
+      <div class="summary-divider"></div>
+      <div class="summary-item">
+        <span class="summary-number">1</span>
+        <span class="summary-label">competición clasificada</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+  .evidence {
+    background: var(--bg-primary);
+  }
+
+  .evidence-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+    gap: 1.5rem;
+    margin-bottom: 3rem;
+  }
+
+  .evidence-card {
+    background: var(--bg-card);
+    border: 1px solid var(--border-color);
+    border-radius: var(--radius-lg);
+    padding: 1.5rem;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    transition: all var(--transition-normal);
+    animation: fadeInUp 0.5s ease forwards;
+    animation-delay: var(--delay);
+    opacity: 0;
+  }
+
+  .evidence-card:hover {
+    border-color: var(--border-glow);
+    box-shadow: var(--shadow-glow);
+  }
+
+  .evidence-card.verified {
+    border-left: 3px solid #10b981;
+  }
+
+  .evidence-top {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .evidence-category {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+    font-size: 0.7rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    color: var(--text-muted);
+    padding: 0.2rem 0.6rem;
+    background: var(--bg-glass);
+    border-radius: var(--radius-full);
+  }
+
+  .verified-dot {
+    color: #10b981;
+    font-weight: 700;
+  }
+
+  .evidence-body {
+    flex: 1;
+  }
+
+  .evidence-icon {
+    font-size: 1.5rem;
+    display: block;
+    margin-bottom: 0.5rem;
+  }
+
+  .evidence-body h3 {
+    font-size: 1rem;
+    color: var(--text-primary);
+    margin-bottom: 0.4rem;
+    line-height: 1.4;
+  }
+
+  .evidence-body p {
+    font-size: 0.85rem;
+    color: var(--text-secondary);
+    line-height: 1.6;
+  }
+
+  .evidence-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+    font-size: 0.8rem;
+    font-weight: 500;
+    color: var(--accent-primary);
+    transition: color var(--transition-fast);
+    align-self: flex-start;
+  }
+
+  .evidence-link:hover {
+    color: var(--accent-secondary);
+  }
+
+  .evidence-summary {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 2rem;
+    padding: 2rem;
+    background: var(--bg-card);
+    border: 1px solid var(--border-color);
+    border-radius: var(--radius-lg);
+  }
+
+  .summary-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.3rem;
+  }
+
+  .summary-number {
+    font-family: var(--font-display);
+    font-size: 2rem;
+    font-weight: 700;
+    color: var(--accent-primary);
+  }
+
+  .summary-label {
+    font-size: 0.8rem;
+    color: var(--text-muted);
+    text-align: center;
+  }
+
+  .summary-divider {
+    width: 1px;
+    height: 40px;
+    background: var(--border-color);
+  }
+
+  @media (max-width: 640px) {
+    .evidence-grid {
+      grid-template-columns: 1fr;
+    }
+
+    .evidence-summary {
+      flex-direction: column;
+      gap: 1.5rem;
+    }
+
+    .summary-divider {
+      width: 40px;
+      height: 1px;
+    }
+  }
+</style>

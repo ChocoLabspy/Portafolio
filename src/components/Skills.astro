@@ -1,0 +1,333 @@
+---
+interface Skill {
+  name: string;
+  icon: string;
+  evidence: string;
+  category: 'language' | 'framework' | 'tool' | 'concept';
+}
+
+const skills: Skill[] = [
+  { name: 'Python', icon: '🐍', evidence: 'Bots, automatización, APIs, async', category: 'language' },
+  { name: 'JavaScript', icon: '⚡', evidence: 'Front-end, extensiones Chrome, tooling', category: 'language' },
+  { name: 'C++', icon: '⚙️', evidence: 'Algoritmos, rendimiento, bases', category: 'language' },
+  { name: 'HTML/CSS', icon: '🎨', evidence: 'Maquetación, responsive, UX', category: 'language' },
+  { name: 'Node.js', icon: '🟢', evidence: 'APIs, servicios, automatización', category: 'framework' },
+  { name: 'Astro', icon: '🚀', evidence: 'SSG, este portafolio, rendimiento', category: 'framework' },
+  { name: 'Discord.js', icon: '🤖', evidence: 'DevBot: sistema completo de bot', category: 'framework' },
+  { name: 'Git', icon: '📦', evidence: 'Ramas, PRs, releases, workflow', category: 'tool' },
+  { name: 'VS Code', icon: '💻', evidence: 'Entorno principal, extensiones', category: 'tool' },
+  { name: 'Chrome APIs', icon: '🧩', evidence: 'Extensión publicada en Web Store', category: 'tool' },
+  { name: 'UX en bots', icon: '📋', evidence: 'Modales, botones, flujos interactivos', category: 'concept' },
+  { name: 'Automatización', icon: '🔄', evidence: 'Bots, scripts, flujos automáticos', category: 'concept' },
+];
+
+const categories = {
+  language: { label: 'Lenguajes', color: '#6366f1' },
+  framework: { label: 'Frameworks', color: '#8b5cf6' },
+  tool: { label: 'Herramientas', color: '#06b6d4' },
+  concept: { label: 'Conceptos', color: '#22c55e' },
+};
+
+const practices = [
+  { icon: "🧪", name: "Testing", detail: "Tests manuales + plan de validación por módulo", status: "active" },
+  { icon: "📐", name: "Linting / Format", detail: "ESLint + Prettier en proyectos JS", status: "active" },
+  { icon: "🔄", name: "CI/CD", detail: "GitHub Actions", status: "progress" },
+  { icon: "📖", name: "Documentación", detail: "README + guía de instalación/uso por proyecto", status: "active" },
+  { icon: "🔒", name: "Seguridad", detail: "Permisos mínimos, validación de inputs, rate limiting", status: "active" },
+  { icon: "📦", name: "Versionado", detail: "Releases semánticas, changelogs", status: "active" },
+];
+---
+
+<section id="habilidades" class="skills">
+  <div class="container">
+    <div class="section-header">
+      <span class="section-label">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/>
+        </svg>
+        Habilidades
+      </span>
+      <h2>Con qué trabajo</h2>
+      <p>Lenguajes, herramientas y cómo me organizo</p>
+    </div>
+    
+    <div class="skills-legend">
+      {Object.entries(categories).map(([key, { label, color }]) => (
+        <button class="legend-item active" data-category={key}>
+          <span class="legend-dot" style={`background: ${color}`}></span>
+          {label}
+        </button>
+      ))}
+    </div>
+    
+    <div class="skills-grid">
+      {skills.map(skill => (
+        <div class="skill-card" data-category={skill.category}>
+          <span class="skill-icon">{skill.icon}</span>
+          <span class="skill-name">{skill.name}</span>
+          <span class="skill-evidence">{skill.evidence}</span>
+          <span class="skill-glow" style={`--glow-color: ${categories[skill.category].color}`}></span>
+        </div>
+      ))}
+    </div>
+
+    <div class="practices-section">
+      <h3 class="practices-title">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
+        </svg>
+        Prácticas de ingeniería
+      </h3>
+      <div class="practices-grid">
+        {practices.map(p => (
+          <div class={`practice-card ${p.status === 'progress' ? 'in-progress' : ''}`}>
+            <span class="practice-icon">{p.icon}</span>
+            <div class="practice-info">
+              <span class="practice-name">{p.name}</span>
+              <span class="practice-detail">{p.detail}</span>
+            </div>
+            {p.status === 'progress' && <span class="practice-badge">En progreso</span>}
+          </div>
+        ))}
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+  .skills {
+    position: relative;
+  }
+  
+  .skills-legend {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 1rem;
+    margin-bottom: 3rem;
+  }
+  
+  .legend-item {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.5rem 1rem;
+    background: var(--bg-card);
+    border: 1px solid var(--border-color);
+    border-radius: var(--radius-full);
+    font-size: 0.875rem;
+    color: var(--text-secondary);
+    cursor: pointer;
+    transition: all var(--transition-fast);
+  }
+  
+  .legend-item:hover,
+  .legend-item.active {
+    border-color: var(--accent-primary);
+    color: var(--text-primary);
+  }
+  
+  .legend-item:not(.active) {
+    opacity: 0.5;
+  }
+  
+  .legend-dot {
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+  }
+  
+  .skills-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+    gap: 1rem;
+  }
+  
+  .skill-card {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.75rem;
+    padding: 1.5rem 1rem;
+    background: var(--bg-card);
+    border: 1px solid var(--border-color);
+    border-radius: var(--radius-md);
+    cursor: default;
+    transition: all var(--transition-normal);
+    overflow: hidden;
+  }
+  
+  .skill-card:hover {
+    transform: translateY(-4px);
+    border-color: var(--border-glow);
+  }
+  
+  .skill-card:hover .skill-glow {
+    opacity: 1;
+  }
+  
+  .skill-card.hidden {
+    opacity: 0.2;
+    transform: scale(0.95);
+  }
+  
+  .skill-icon {
+    font-size: 2rem;
+  }
+  
+  .skill-name {
+    font-size: 0.9rem;
+    font-weight: 500;
+    color: var(--text-primary);
+    text-align: center;
+  }
+
+  .skill-evidence {
+    font-size: 0.7rem;
+    color: var(--text-muted);
+    text-align: center;
+    line-height: 1.3;
+  }
+  
+  .skill-glow {
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(circle at center, var(--glow-color), transparent 70%);
+    opacity: 0;
+    transition: opacity var(--transition-normal);
+    pointer-events: none;
+  }
+  
+  .practices-section {
+    margin-top: 4rem;
+    padding-top: 3rem;
+    border-top: 1px solid var(--border-color);
+  }
+
+  .practices-title {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-size: 1.25rem;
+    margin-bottom: 1.5rem;
+    color: var(--text-primary);
+  }
+
+  .practices-title svg {
+    color: var(--accent-primary);
+  }
+
+  .practices-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 1rem;
+  }
+
+  .practice-card {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    padding: 1rem 1.25rem;
+    background: var(--bg-card);
+    border: 1px solid var(--border-color);
+    border-radius: var(--radius-md);
+    transition: all var(--transition-normal);
+    position: relative;
+  }
+
+  .practice-card:hover {
+    border-color: var(--border-glow);
+  }
+
+  .practice-card.in-progress {
+    border-color: rgba(245, 158, 11, 0.3);
+  }
+
+  .practice-icon {
+    font-size: 1.5rem;
+    flex-shrink: 0;
+  }
+
+  .practice-info {
+    display: flex;
+    flex-direction: column;
+    gap: 0.15rem;
+  }
+
+  .practice-name {
+    font-size: 0.9rem;
+    font-weight: 600;
+    color: var(--text-primary);
+  }
+
+  .practice-detail {
+    font-size: 0.8rem;
+    color: var(--text-muted);
+  }
+
+  .practice-badge {
+    position: absolute;
+    top: 0.5rem;
+    right: 0.75rem;
+    font-size: 0.65rem;
+    padding: 0.15rem 0.5rem;
+    background: rgba(245, 158, 11, 0.15);
+    color: #f59e0b;
+    border-radius: 9999px;
+    font-weight: 600;
+  }
+
+  @media (max-width: 640px) {
+    .skills-grid {
+      grid-template-columns: repeat(2, 1fr);
+      gap: 0.75rem;
+    }
+    
+    .skill-card {
+      padding: 1rem 0.5rem;
+    }
+    
+    .skill-name {
+      font-size: 0.75rem;
+    }
+
+    .skill-evidence {
+      display: none;
+    }
+
+    .practices-grid {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>
+
+<script>
+  // Filter skills by category
+  const legendItems = document.querySelectorAll('.legend-item');
+  const skillCards = document.querySelectorAll('.skill-card');
+  
+  legendItems.forEach(item => {
+    item.addEventListener('click', () => {
+      const category = item.getAttribute('data-category');
+      
+      // Toggle active state
+      item.classList.toggle('active');
+      
+      // Get all active categories
+      const activeCategories = Array.from(legendItems)
+        .filter(i => i.classList.contains('active'))
+        .map(i => i.getAttribute('data-category'));
+      
+      // Show/hide cards
+      skillCards.forEach(card => {
+        const cardCategory = card.getAttribute('data-category');
+        if (activeCategories.length === 0 || activeCategories.includes(cardCategory)) {
+          card.classList.remove('hidden');
+        } else {
+          card.classList.add('hidden');
+        }
+      });
+    });
+  });
+</script>

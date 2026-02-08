@@ -1,0 +1,388 @@
+---
+interface Project {
+  title: string;
+  problem: string;
+  solution: string;
+  impact: string[];
+  decisions: string[];
+  learnings: string[];
+  tags: string[];
+  image?: string;
+  link?: string;
+  github?: string;
+  store?: string;
+}
+
+const projects: Project[] = [
+  {
+    title: "KitVia",
+    problem: "Quería tener un sitio donde juntar herramientas útiles sin depender de webs con anuncios.",
+    solution: "Una web donde voy añadiendo herramientas como módulos. Cada una funciona por separado.",
+    impact: [
+      "Funcionando en kitvia.net",
+      "Varias herramientas ya disponibles",
+      "Se pueden añadir más sin tocar las existentes",
+    ],
+    decisions: [
+      "Cada herramienta va en su propio módulo para no liar el código principal.",
+      "Sin frameworks pesados — HTML, CSS y JS puro para que cargue rápido.",
+    ],
+    learnings: [
+      "Aprendí a pensar primero en cómo va a usarlo alguien, y luego programar.",
+      "Me falta un sistema de routing mejor y alguna forma de saber qué herramientas usa más la gente.",
+    ],
+    tags: ["JavaScript", "HTML/CSS", "UX", "Modularidad"],
+    image: "/projects/proyecto1.png",
+    link: "https://kitvia.net",
+  },
+  {
+    title: "DevBot",
+    problem: "Cada vez que creaba un servidor de Discord tenía que configurar todo a mano: roles, canales, bienvenidas...",
+    solution: "Un bot con modales e interfaz interactiva que te guía paso a paso. Lo configuras todo desde Discord, sin tocar código ni archivos.",
+    impact: [
+      "Funcionando y se puede invitar a cualquier servidor",
+      "Se le pueden añadir módulos nuevos fácilmente",
+      "Todo se configura con modales y botones desde Discord",
+    ],
+    decisions: [
+      "Usé modales y componentes interactivos de Discord para que configurar el bot sea intuitivo.",
+      "Separé la lógica por módulos para poder añadir funcionalidades sin romper las existentes.",
+      "Añadí rate-limiting para que Discord no me bloquee la API.",
+    ],
+    learnings: [
+      "Aquí es donde entendí de verdad la importancia de una buena UX, incluso dentro de un bot.",
+      "Quiero añadir más módulos y un sistema de permisos más flexible.",
+    ],
+    tags: ["Python", "Discord API", "Modales", "Automatización"],
+    image: "/projects/proyecto2.png",
+    link: "https://discord.com/oauth2/authorize?client_id=1357614264441110569",
+  },
+  {
+    title: "JSON Formatter Pro",
+    problem: "Necesitaba ver JSONs formateados en el navegador sin abrir otra herramienta.",
+    solution: "Una extensión de Chrome que formatea, valida y colorea JSON directamente.",
+    impact: [
+      "Publicada en la Chrome Web Store",
+      "La uso yo todos los días",
+      "Proyecto terminado y mantenido",
+    ],
+    decisions: [
+      "Solo APIs nativas de Chrome para que pese poco y vaya rápido.",
+      "Si el JSON está mal, te dice exactamente dónde está el error.",
+    ],
+    learnings: [
+      "Aprendí todo el proceso: desarrollar, pasar la revisión de Google, publicar y mantener.",
+      "Quiero añadirle temas de color y poder exportar a otros formatos.",
+    ],
+    tags: ["JavaScript", "Chrome Extension", "JSON", "Publicado"],
+    image: "/projects/proyecto3.png",
+    store: "https://chromewebstore.google.com/detail/JSON%20Formatter%20Pro/oldbplbcgfkkidgccdconiijmjeekobd?hl=es&authuser=0",
+  },
+];
+---
+
+<section id="proyectos" class="projects">
+  <div class="container">
+    <div class="section-header">
+      <span class="section-label">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <path d="M22 19a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5l2 3h9a2 2 0 0 1 2 2z"/>
+        </svg>
+        Proyectos
+      </span>
+      <h2>Mis proyectos</h2>
+      <p>Las cosas que he hecho, por qué las hice y qué aprendí</p>
+    </div>
+    
+    <div class="projects-list">
+      {projects.map((project, index) => (
+        <article class="project-card-full" style={`--delay: ${index * 0.1}s`}>
+          <div class="project-image-full">
+            {project.image ? (
+              <img 
+                src={project.image} 
+                alt={`Captura de ${project.title}`}
+                loading="lazy"
+                onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';"
+              />
+              <div class="project-placeholder" style="display: none;">
+                <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                  <path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"/>
+                </svg>
+              </div>
+            ) : (
+              <div class="project-placeholder">
+                <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                  <path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"/>
+                </svg>
+              </div>
+            )}
+          </div>
+          
+          <div class="project-body">
+            <div class="project-header-row">
+              <h3 class="project-title">{project.title}</h3>
+              <div class="project-tags">
+                {project.tags.map(tag => (
+                  <span class="tag">{tag}</span>
+                ))}
+              </div>
+            </div>
+
+            <div class="project-sections">
+              <div class="project-section">
+                <h4><span class="section-icon">🎯</span> Problema</h4>
+                <p>{project.problem}</p>
+              </div>
+
+              <div class="project-section">
+                <h4><span class="section-icon">💡</span> Solución</h4>
+                <p>{project.solution}</p>
+              </div>
+
+              <div class="project-section">
+                <h4><span class="section-icon">📊</span> Impacto</h4>
+                <ul>
+                  {project.impact.map(item => <li>{item}</li>)}
+                </ul>
+              </div>
+
+              <div class="project-section">
+                <h4><span class="section-icon">⚙️</span> Decisiones técnicas</h4>
+                <ul>
+                  {project.decisions.map(item => <li>{item}</li>)}
+                </ul>
+              </div>
+
+              <div class="project-section">
+                <h4><span class="section-icon">📝</span> Lo que aprendí / mejoraría</h4>
+                <ul>
+                  {project.learnings.map(item => <li>{item}</li>)}
+                </ul>
+              </div>
+            </div>
+
+            <div class="project-links">
+              {project.link && (
+                <a href={project.link} class="project-link primary" target="_blank" rel="noopener">
+                  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/>
+                    <polyline points="15 3 21 3 21 9"/>
+                    <line x1="10" y1="14" x2="21" y2="3"/>
+                  </svg>
+                  Demo Live
+                </a>
+              )}
+              {project.store && (
+                <a href={project.store} class="project-link primary" target="_blank" rel="noopener">
+                  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/>
+                  </svg>
+                  Chrome Web Store
+                </a>
+              )}
+              {project.github && (
+                <a href={project.github} class="project-link" target="_blank" rel="noopener">
+                  <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+                    <path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/>
+                  </svg>
+                  Código
+                </a>
+              )}
+            </div>
+          </div>
+        </article>
+      ))}
+    </div>
+  </div>
+</section>
+
+<style>
+  .projects {
+    background: var(--bg-secondary);
+  }
+  
+  .projects-list {
+    display: flex;
+    flex-direction: column;
+    gap: 3rem;
+  }
+
+  .project-card-full {
+    display: grid;
+    grid-template-columns: 1fr 1.5fr;
+    background: var(--bg-card);
+    border: 1px solid var(--border-color);
+    border-radius: var(--radius-lg);
+    overflow: hidden;
+    transition: all var(--transition-normal);
+    animation: fadeInUp 0.6s ease forwards;
+    animation-delay: var(--delay);
+    opacity: 0;
+  }
+
+  .project-card-full:hover {
+    border-color: var(--border-glow);
+    box-shadow: var(--shadow-glow);
+  }
+  
+  .project-image-full {
+    background: var(--bg-secondary);
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 200px;
+  }
+  
+  .project-image-full img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: right center;
+    transition: transform var(--transition-normal);
+  }
+  
+  .project-card-full:hover .project-image-full img {
+    transform: scale(1.03);
+  }
+  
+  .project-placeholder {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--text-muted);
+  }
+  
+  .project-body {
+    padding: 2rem;
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+  }
+
+  .project-header-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 1rem;
+    flex-wrap: wrap;
+  }
+  
+  .project-title {
+    font-size: 1.5rem;
+    color: var(--text-primary);
+  }
+  
+  .project-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.4rem;
+  }
+  
+  .tag {
+    padding: 0.2rem 0.6rem;
+    background: rgba(99, 102, 241, 0.1);
+    border: 1px solid rgba(99, 102, 241, 0.2);
+    border-radius: var(--radius-full);
+    font-size: 0.7rem;
+    font-weight: 500;
+    color: var(--accent-primary);
+  }
+
+  .project-sections {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+  }
+
+  .project-section h4 {
+    display: flex;
+    align-items: center;
+    gap: 0.4rem;
+    font-size: 0.85rem;
+    font-weight: 600;
+    color: var(--text-primary);
+    margin-bottom: 0.4rem;
+  }
+
+  .section-icon {
+    font-size: 0.9rem;
+  }
+
+  .project-section p {
+    font-size: 0.85rem;
+    color: var(--text-secondary);
+    line-height: 1.6;
+    padding-left: 1.3rem;
+  }
+
+  .project-section ul {
+    list-style: none;
+    padding-left: 1.3rem;
+  }
+
+  .project-section li {
+    font-size: 0.85rem;
+    color: var(--text-secondary);
+    line-height: 1.6;
+    position: relative;
+    padding-left: 1rem;
+  }
+
+  .project-section li::before {
+    content: '→';
+    position: absolute;
+    left: 0;
+    color: var(--accent-primary);
+    font-size: 0.8rem;
+  }
+  
+  .project-links {
+    display: flex;
+    gap: 1rem;
+    padding-top: 0.5rem;
+    border-top: 1px solid var(--border-color);
+  }
+  
+  .project-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-size: 0.875rem;
+    font-weight: 500;
+    color: var(--text-secondary);
+    transition: color var(--transition-fast);
+  }
+  
+  .project-link:hover {
+    color: var(--text-primary);
+  }
+  
+  .project-link.primary {
+    color: var(--accent-primary);
+  }
+  
+  .project-link.primary:hover {
+    color: var(--accent-secondary);
+  }
+  
+  @media (max-width: 900px) {
+    .project-card-full {
+      grid-template-columns: 1fr;
+    }
+
+    .project-image-full {
+      aspect-ratio: 16/9;
+      max-height: 300px;
+    }
+  }
+
+  @media (max-width: 640px) {
+    .project-body {
+      padding: 1.25rem;
+    }
+  }
+</style>

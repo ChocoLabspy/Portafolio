@@ -1,0 +1,57 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Header from '../components/Header.astro';
+import Hero from '../components/Hero.astro';
+import Projects from '../components/Projects.astro';
+import Evidence from '../components/Evidence.astro';
+import About from '../components/About.astro';
+import Education from '../components/Education.astro';
+import Skills from '../components/Skills.astro';
+import Contact from '../components/Contact.astro';
+import Footer from '../components/Footer.astro';
+
+// ====================================
+// PERSONALIZA TU PORTAFOLIO AQUÍ
+// ====================================
+
+const siteConfig = {
+  // Información personal
+  name: "Egoi Bustinza Iglesias",
+  subtitle: "Desarrollador · Sistemas · Herramientas",
+  heroDescription: "Llevo un par de años programando por mi cuenta y he acabado publicando cosas que funcionan: una web, un bot y una extensión de Chrome. Ahora quiero estudiar esto en serio.",
+  
+  // Sobre mí
+  aboutDescription: "Empecé con Python haciendo bots para Discord y fui tirando del hilo. Aprendí JavaScript para hacer webs, me metí con las APIs de Chrome y acabé publicando una extensión. No tengo formación formal en informática, pero tengo proyectos reales que puedes probar ahora mismo.",
+  
+  motivation: "Me gusta programar, pero sobre todo me gusta entender cómo funcionan las cosas por dentro. Quiero estudiar ingeniería informática para tener la base teórica que me falta: algoritmos, estructuras de datos, redes... Todo lo que ahora aprendo a medias por mi cuenta.",
+};
+---
+
+<Layout title={`${siteConfig.name} | Portafolio`}>
+  <Header />
+  
+  <main>
+    <Hero 
+      name={siteConfig.name}
+      subtitle={siteConfig.subtitle}
+      description={siteConfig.heroDescription}
+    />
+    
+    <Projects />
+    
+    <Evidence />
+    
+    <About 
+      description={siteConfig.aboutDescription}
+      motivation={siteConfig.motivation}
+    />
+    
+    <Education />
+    
+    <Skills />
+    
+    <Contact />
+  </main>
+  
+  <Footer />
+</Layout>

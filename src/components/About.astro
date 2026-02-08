@@ -1,0 +1,367 @@
+---
+interface Props {
+  description: string;
+  motivation: string;
+}
+
+const { description, motivation } = Astro.props;
+
+const highlights = [
+  {
+    icon: "🚀",
+    title: "Cosas que funcionan",
+    text: "Mis proyectos no se quedan en el repositorio. Están publicados y los puedes probar ahora mismo."
+  },
+  {
+    icon: "⚙️",
+    title: "Me gustan los sistemas",
+    text: "En DevBot organicé el código por módulos y usé modales para que configurar el bot sea fácil."
+  },
+  {
+    icon: "🏗️",
+    title: "Pienso antes de picar",
+    text: "Intento que el código se entienda dentro de 6 meses. Módulos claros, nombres descriptivos, documentación."
+  },
+  {
+    icon: "🧠",
+    title: "Aprendo haciendo",
+    text: "Si necesito algo que no sé, leo la documentación y me pongo. Así aprendí Python, JavaScript y las APIs de Chrome."
+  },
+];
+
+const engineeringBlocks = [
+  {
+    icon: "🎯",
+    title: "¿Qué hago?",
+    text: "Hago herramientas que me ahorran tiempo a mí o a otros. Si algo es repetitivo, busco la forma de automatizarlo."
+  },
+  {
+    icon: "🔧",
+    title: "¿Cómo lo hago?",
+    text: "Git desde el principio, configs en JSON para no hardcodear, y README para acordarme de cómo funciona todo."
+  },
+  {
+    icon: "🔍",
+    title: "¿Funciona de verdad?",
+    text: "Cada proyecto tiene un enlace para probarlo. No hay que creerme, se puede comprobar.",
+    isProof: true
+  },
+];
+
+const languages = [
+  { name: "Castellano", level: "Nativo" },
+  { name: "Euskera", level: "Nativo" },
+  { name: "Inglés", level: "Avanzado" },
+];
+---
+
+<section id="sobre-mi" class="about">
+  <div class="container">
+    <div class="section-header">
+      <span class="section-label">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/>
+          <circle cx="12" cy="7" r="4"/>
+        </svg>
+        Sobre Mí
+      </span>
+      <h2>Conóceme un poco más</h2>
+    </div>
+    
+    <div class="about-layout">
+      <div class="about-content">
+        <p class="about-text">{description}</p>
+        
+        <div class="about-motivation">
+          <h4>¿Por qué Ingeniería Informática?</h4>
+          <p>{motivation}</p>
+        </div>
+
+        <div class="engineering-blocks">
+          {engineeringBlocks.map(block => (
+            <div class={`eng-block ${block.isProof ? 'eng-proof' : ''}`}>
+              <span class="eng-icon">{block.icon}</span>
+              <div>
+                <h4>{block.title}</h4>
+                <p>{block.text}</p>
+              </div>
+            </div>
+          ))}
+        </div>
+
+        <div class="about-stats">
+          <div class="stat">
+            <span class="stat-value gradient-text">3</span>
+            <span class="stat-label">Proyectos publicados</span>
+          </div>
+          <div class="stat">
+            <span class="stat-value gradient-text">1</span>
+            <span class="stat-label">En desarrollo</span>
+          </div>
+          <div class="stat">
+            <span class="stat-value gradient-text">3</span>
+            <span class="stat-label">Idiomas</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="about-sidebar">
+        <div class="highlights-grid">
+          {highlights.map(h => (
+            <div class="highlight-card">
+              <span class="highlight-icon">{h.icon}</span>
+              <h4>{h.title}</h4>
+              <p>{h.text}</p>
+            </div>
+          ))}
+        </div>
+
+        <div class="languages-section">
+          <h4 class="languages-title">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <circle cx="12" cy="12" r="10"/>
+              <line x1="2" y1="12" x2="22" y2="12"/>
+              <path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/>
+            </svg>
+            Idiomas
+          </h4>
+          <div class="languages-list">
+            {languages.map(lang => (
+              <div class="language-item">
+                <span class="language-name">{lang.name}</span>
+                <span class="language-level">{lang.level}</span>
+              </div>
+            ))}
+          </div>
+          <p class="languages-note">La documentación y los proyectos los hago en inglés o castellano según el público.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+  .about {
+    background: var(--bg-secondary);
+  }
+  
+  .about-layout {
+    display: grid;
+    grid-template-columns: 1.2fr 1fr;
+    gap: 4rem;
+    align-items: start;
+  }
+  
+  .about-content {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+  }
+  
+  .about-text {
+    font-size: 1.125rem;
+    line-height: 1.8;
+  }
+  
+  .about-motivation {
+    padding: 1.5rem;
+    background: var(--bg-glass);
+    border: 1px solid var(--border-color);
+    border-radius: var(--radius-md);
+  }
+  
+  .about-motivation h4 {
+    color: var(--accent-primary);
+    margin-bottom: 0.75rem;
+  }
+  
+  .about-motivation p {
+    font-size: 1rem;
+    color: var(--text-secondary);
+  }
+  
+  .about-stats {
+    display: flex;
+    gap: 2rem;
+    padding-top: 1rem;
+    border-top: 1px solid var(--border-color);
+  }
+
+  .engineering-blocks {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+  }
+
+  .eng-block {
+    display: flex;
+    gap: 1rem;
+    align-items: flex-start;
+    padding: 1.25rem;
+    background: var(--bg-card);
+    border: 1px solid var(--border-color);
+    border-radius: var(--radius-md);
+    transition: all var(--transition-normal);
+  }
+
+  .eng-block:hover {
+    border-color: var(--border-glow);
+  }
+
+  .eng-proof {
+    border-color: rgba(99, 102, 241, 0.3);
+    background: rgba(99, 102, 241, 0.05);
+  }
+
+  .eng-icon {
+    font-size: 1.5rem;
+    flex-shrink: 0;
+    margin-top: 0.1rem;
+  }
+
+  .eng-block h4 {
+    font-size: 0.95rem;
+    margin-bottom: 0.3rem;
+    color: var(--text-primary);
+  }
+
+  .eng-block p {
+    font-size: 0.85rem;
+    color: var(--text-muted);
+    line-height: 1.5;
+  }
+  
+  .stat {
+    display: flex;
+    flex-direction: column;
+    gap: 0.25rem;
+  }
+  
+  .stat-value {
+    font-family: var(--font-display);
+    font-size: 2.5rem;
+    font-weight: 700;
+    line-height: 1;
+  }
+  
+  .stat-label {
+    font-size: 0.875rem;
+    color: var(--text-muted);
+  }
+
+  .about-sidebar {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+  }
+
+  .highlights-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1rem;
+  }
+
+  .highlight-card {
+    padding: 1.25rem;
+    background: var(--bg-card);
+    border: 1px solid var(--border-color);
+    border-radius: var(--radius-md);
+    transition: all var(--transition-normal);
+  }
+
+  .highlight-card:hover {
+    border-color: var(--border-glow);
+    transform: translateY(-2px);
+  }
+
+  .highlight-icon {
+    font-size: 1.5rem;
+    display: block;
+    margin-bottom: 0.5rem;
+  }
+
+  .highlight-card h4 {
+    font-size: 0.9rem;
+    margin-bottom: 0.4rem;
+    color: var(--text-primary);
+  }
+
+  .highlight-card p {
+    font-size: 0.8rem;
+    color: var(--text-muted);
+    line-height: 1.5;
+  }
+
+  .languages-section {
+    padding: 1.5rem;
+    background: var(--bg-card);
+    border: 1px solid var(--border-color);
+    border-radius: var(--radius-md);
+  }
+
+  .languages-title {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-size: 1rem;
+    color: var(--accent-primary);
+    margin-bottom: 1rem;
+  }
+
+  .languages-list {
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+    margin-bottom: 1rem;
+  }
+
+  .language-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0.5rem 0.75rem;
+    background: var(--bg-glass);
+    border-radius: var(--radius-sm);
+  }
+
+  .language-name {
+    font-size: 0.9rem;
+    font-weight: 500;
+  }
+
+  .language-level {
+    font-size: 0.8rem;
+    color: var(--text-muted);
+    padding: 0.2rem 0.6rem;
+    background: var(--bg-secondary);
+    border-radius: 9999px;
+  }
+
+  .languages-note {
+    font-size: 0.8rem;
+    color: var(--text-muted);
+    font-style: italic;
+  }
+  
+  @media (max-width: 900px) {
+    .about-layout {
+      grid-template-columns: 1fr;
+      gap: 3rem;
+    }
+
+    .highlights-grid {
+      grid-template-columns: 1fr 1fr;
+    }
+    
+    .about-stats {
+      flex-wrap: wrap;
+      gap: 1.5rem;
+    }
+  }
+
+  @media (max-width: 500px) {
+    .highlights-grid {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>

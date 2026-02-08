@@ -1,0 +1,98 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="800" height="450" viewBox="0 0 800 450">
+  <defs>
+    <linearGradient id="bg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#0f0f1a;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#1a1a2e;stop-opacity:1" />
+    </linearGradient>
+    <linearGradient id="chrome" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#4285f4" />
+      <stop offset="50%" style="stop-color:#34a853" />
+      <stop offset="100%" style="stop-color:#fbbc05" />
+    </linearGradient>
+    <linearGradient id="green" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" style="stop-color:#22c55e" />
+      <stop offset="100%" style="stop-color:#16a34a" />
+    </linearGradient>
+    <filter id="softglow">
+      <feGaussianBlur stdDeviation="25" result="blur"/>
+      <feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge>
+    </filter>
+  </defs>
+  
+  <!-- Background -->
+  <rect width="800" height="450" fill="url(#bg)"/>
+  
+  <!-- Glow -->
+  <circle cx="400" cy="225" r="180" fill="#22c55e" opacity="0.04" filter="url(#softglow)"/>
+  <circle cx="200" cy="100" r="120" fill="#4285f4" opacity="0.03" filter="url(#softglow)"/>
+
+  <!-- Left panel - Raw JSON -->
+  <rect x="60" y="55" width="320" height="320" rx="10" fill="#121225" stroke="#2a2a4a" stroke-width="1.5"/>
+  <rect x="60" y="55" width="320" height="32" rx="10" fill="#1a1a32"/>
+  <rect x="60" y="77" width="320" height="10" fill="#1a1a32"/>
+  <text x="82" y="76" font-family="sans-serif" font-size="11" fill="#6a6a8a" font-weight="600">📄 Input — Raw JSON</text>
+  <!-- Red status dot -->
+  <circle cx="352" cy="72" r="5" fill="#ef4444" opacity="0.8"/>
+
+  <!-- Raw JSON content -->
+  <text x="78" y="108" font-family="monospace" font-size="11" fill="#ef4444">{"name":"Egoi","age":20,</text>
+  <text x="78" y="124" font-family="monospace" font-size="11" fill="#ef4444">"skills":["Python","JS",</text>
+  <text x="78" y="140" font-family="monospace" font-size="11" fill="#ef4444">"C++"],"projects":[{"na</text>
+  <text x="78" y="156" font-family="monospace" font-size="11" fill="#ef4444">me":"KitVia","url":"kit</text>
+  <text x="78" y="172" font-family="monospace" font-size="11" fill="#ef4444">via.net"},{"name":"DevB</text>
+  <text x="78" y="188" font-family="monospace" font-size="11" fill="#ef4444">ot","type":"discord"}],</text>
+  <text x="78" y="204" font-family="monospace" font-size="11" fill="#ef4444">"available":true}</text>
+
+  <!-- Error indicators -->
+  <rect x="78" y="230" width="280" height="24" rx="4" fill="#ef4444" opacity="0.08"/>
+  <text x="90" y="246" font-family="sans-serif" font-size="10" fill="#ef4444">⚠ Sin formato — difícil de leer</text>
+
+  <!-- Arrow in the middle -->
+  <g transform="translate(400, 200)">
+    <circle r="28" fill="#22c55e" opacity="0.12"/>
+    <polygon points="-10,-12 10,0 -10,12" fill="#22c55e" transform="translate(2,0)"/>
+  </g>
+
+  <!-- Right panel - Formatted JSON -->
+  <rect x="420" y="55" width="320" height="320" rx="10" fill="#121225" stroke="#22c55e" stroke-width="1.5" opacity="1"/>
+  <rect x="420" y="55" width="320" height="32" rx="10" fill="#1a1a32"/>
+  <rect x="420" y="77" width="320" height="10" fill="#1a1a32"/>
+  <text x="442" y="76" font-family="sans-serif" font-size="11" fill="#22c55e" font-weight="600">✨ Output — Formatted</text>
+  <!-- Green status dot -->
+  <circle cx="712" cy="72" r="5" fill="#22c55e" opacity="0.8"/>
+
+  <!-- Formatted JSON with syntax highlighting -->
+  <text x="438" y="108" font-family="monospace" font-size="11" fill="#c8c8f0">{</text>
+  <text x="450" y="124" font-family="monospace" font-size="11" fill="#a78bfa">"name"</text>
+  <text x="496" y="124" font-family="monospace" font-size="11" fill="#c8c8f0">:</text>
+  <text x="506" y="124" font-family="monospace" font-size="11" fill="#22c55e">"Egoi"</text>
+  <text x="548" y="124" font-family="monospace" font-size="11" fill="#c8c8f0">,</text>
+
+  <text x="450" y="140" font-family="monospace" font-size="11" fill="#a78bfa">"age"</text>
+  <text x="490" y="140" font-family="monospace" font-size="11" fill="#c8c8f0">:</text>
+  <text x="500" y="140" font-family="monospace" font-size="11" fill="#f59e0b">20</text>
+  <text x="516" y="140" font-family="monospace" font-size="11" fill="#c8c8f0">,</text>
+
+  <text x="450" y="156" font-family="monospace" font-size="11" fill="#a78bfa">"skills"</text>
+  <text x="506" y="156" font-family="monospace" font-size="11" fill="#c8c8f0">: [</text>
+  <text x="462" y="172" font-family="monospace" font-size="11" fill="#22c55e">"Python"</text>
+  <text x="518" y="172" font-family="monospace" font-size="11" fill="#c8c8f0">,</text>
+  <text x="462" y="188" font-family="monospace" font-size="11" fill="#22c55e">"JS"</text>
+  <text x="490" y="188" font-family="monospace" font-size="11" fill="#c8c8f0">,</text>
+  <text x="462" y="204" font-family="monospace" font-size="11" fill="#22c55e">"C++"</text>
+  <text x="450" y="220" font-family="monospace" font-size="11" fill="#c8c8f0">],</text>
+
+  <text x="450" y="236" font-family="monospace" font-size="11" fill="#a78bfa">"available"</text>
+  <text x="528" y="236" font-family="monospace" font-size="11" fill="#c8c8f0">:</text>
+  <text x="538" y="236" font-family="monospace" font-size="11" fill="#f59e0b">true</text>
+
+  <text x="438" y="252" font-family="monospace" font-size="11" fill="#c8c8f0">}</text>
+
+  <!-- Validation badge -->
+  <rect x="438" y="270" width="280" height="24" rx="4" fill="#22c55e" opacity="0.08"/>
+  <text x="450" y="286" font-family="sans-serif" font-size="10" fill="#22c55e">✅ JSON válido — 7 propiedades — 245 bytes</text>
+
+  <!-- Chrome Web Store badge -->
+  <rect x="260" y="400" width="280" height="34" rx="17" fill="#1a1a32" stroke="#4285f4" stroke-width="1"/>
+  <text x="400" y="421" font-family="sans-serif" font-size="12" fill="#8ab4f8" text-anchor="middle" font-weight="600">🧩 Chrome Web Store Extension</text>
+</svg>

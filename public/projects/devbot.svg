@@ -1,0 +1,100 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="800" height="450" viewBox="0 0 800 450">
+  <defs>
+    <linearGradient id="bg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#0f0f1a;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#1a1a2e;stop-opacity:1" />
+    </linearGradient>
+    <linearGradient id="discord" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#5865F2" />
+      <stop offset="100%" style="stop-color:#7289da" />
+    </linearGradient>
+    <filter id="glow">
+      <feGaussianBlur stdDeviation="6" result="blur"/>
+      <feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge>
+    </filter>
+    <filter id="softglow">
+      <feGaussianBlur stdDeviation="25" result="blur"/>
+      <feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge>
+    </filter>
+  </defs>
+  
+  <!-- Background -->
+  <rect width="800" height="450" fill="url(#bg)"/>
+  
+  <!-- Glow orbs -->
+  <circle cx="400" cy="200" r="160" fill="#5865F2" opacity="0.06" filter="url(#softglow)"/>
+  <circle cx="600" cy="350" r="100" fill="#7289da" opacity="0.04" filter="url(#softglow)"/>
+
+  <!-- Discord-like app mockup -->
+  <!-- Server list -->
+  <rect x="100" y="60" width="56" height="330" rx="0" fill="#121220"/>
+  <circle cx="128" cy="90" r="18" fill="#5865F2" opacity="0.8"/>
+  <text x="128" y="96" font-family="sans-serif" font-size="14" fill="white" text-anchor="middle" font-weight="700">D</text>
+  <line x1="106" y1="115" x2="150" y2="115" stroke="#2a2a4a" stroke-width="1"/>
+  <circle cx="128" cy="140" r="16" fill="#1e1e36"/>
+  <circle cx="128" cy="178" r="16" fill="#1e1e36"/>
+  <circle cx="128" cy="216" r="16" fill="#22c55e" opacity="0.3"/>
+  <circle cx="128" cy="254" r="16" fill="#1e1e36"/>
+
+  <!-- Channel list -->
+  <rect x="156" y="60" width="170" height="330" rx="0" fill="#16162a"/>
+  <!-- Server name -->
+  <rect x="156" y="60" width="170" height="38" fill="#1a1a30"/>
+  <text x="175" y="84" font-family="sans-serif" font-size="13" fill="#e0e0f0" font-weight="700">DevBot Server</text>
+  <!-- Channels -->
+  <text x="172" y="118" font-family="sans-serif" font-size="10" fill="#6a6a8a" font-weight="600">CANALES DE TEXTO</text>
+  <text x="175" y="140" font-family="sans-serif" font-size="12" fill="#8a8aaa"># general</text>
+  <rect x="166" y="148" width="150" height="24" rx="4" fill="#5865F2" opacity="0.12"/>
+  <text x="175" y="165" font-family="sans-serif" font-size="12" fill="#c8c8f0"># comandos</text>
+  <text x="175" y="190" font-family="sans-serif" font-size="12" fill="#8a8aaa"># configuración</text>
+  <text x="175" y="215" font-family="sans-serif" font-size="12" fill="#8a8aaa"># logs</text>
+  <text x="172" y="248" font-family="sans-serif" font-size="10" fill="#6a6a8a" font-weight="600">CANALES DE VOZ</text>
+  <text x="175" y="270" font-family="sans-serif" font-size="12" fill="#8a8aaa">🔊 Sala 1</text>
+  <text x="175" y="295" font-family="sans-serif" font-size="12" fill="#8a8aaa">🔊 Sala 2</text>
+
+  <!-- Chat area -->
+  <rect x="326" y="60" width="374" height="330" rx="0" fill="#0f0f1e"/>
+  <!-- Chat header -->
+  <rect x="326" y="60" width="374" height="38" fill="#14142a"/>
+  <text x="345" y="84" font-family="sans-serif" font-size="13" fill="#c0c0e0" font-weight="600"># comandos</text>
+
+  <!-- Bot messages -->
+  <!-- Message 1 -->
+  <circle cx="350" cy="122" r="14" fill="#5865F2"/>
+  <text x="350" y="127" font-family="sans-serif" font-size="10" fill="white" text-anchor="middle" font-weight="700">🤖</text>
+  <text x="374" y="116" font-family="sans-serif" font-size="12" fill="#7289da" font-weight="700">DevBot</text>
+  <text x="436" y="116" font-family="sans-serif" font-size="9" fill="#5a5a7a">Hoy a las 14:32</text>
+  <text x="374" y="132" font-family="monospace" font-size="11" fill="#b0b0d0">✅ Configuración cargada desde config.json</text>
+
+  <!-- Message 2 - Embed -->
+  <rect x="374" y="148" width="300" height="100" rx="6" fill="#16162e" stroke="#5865F2" stroke-width="2" stroke-dasharray="0" opacity="1"/>
+  <rect x="374" y="148" width="4" height="100" rx="2" fill="#5865F2"/>
+  <text x="392" y="170" font-family="sans-serif" font-size="12" fill="#e0e0f0" font-weight="700">📊 Estado del Bot</text>
+  <text x="392" y="190" font-family="sans-serif" font-size="10" fill="#a0a0c0">Servidores: 12</text>
+  <text x="392" y="206" font-family="sans-serif" font-size="10" fill="#a0a0c0">Usuarios: 847</text>
+  <text x="392" y="222" font-family="sans-serif" font-size="10" fill="#a0a0c0">Comandos activos: 23</text>
+  <text x="392" y="238" font-family="sans-serif" font-size="10" fill="#22c55e">● Online — Latencia: 45ms</text>
+
+  <!-- Message 3 -->
+  <circle cx="350" cy="282" r="14" fill="#5865F2"/>
+  <text x="350" y="287" font-family="sans-serif" font-size="10" fill="white" text-anchor="middle" font-weight="700">🤖</text>
+  <text x="374" y="276" font-family="sans-serif" font-size="12" fill="#7289da" font-weight="700">DevBot</text>
+  <text x="374" y="292" font-family="monospace" font-size="11" fill="#b0b0d0">⚙️ Auto-roles asignados: @Developer</text>
+
+  <!-- JSON snippet floating -->
+  <rect x="374" y="306" width="260" height="68" rx="6" fill="#12122a" stroke="#2a2a4a" stroke-width="1"/>
+  <text x="386" y="322" font-family="monospace" font-size="10" fill="#6a6a8a">// config.json</text>
+  <text x="386" y="336" font-family="monospace" font-size="10" fill="#c8c8f0">{</text>
+  <text x="398" y="350" font-family="monospace" font-size="10" fill="#a78bfa">"prefix"</text>
+  <text x="450" y="350" font-family="monospace" font-size="10" fill="#c8c8f0">:</text>
+  <text x="460" y="350" font-family="monospace" font-size="10" fill="#22c55e">"!"</text>
+  <text x="472" y="350" font-family="monospace" font-size="10" fill="#c8c8f0">,</text>
+  <text x="398" y="364" font-family="monospace" font-size="10" fill="#a78bfa">"autoRoles"</text>
+  <text x="472" y="364" font-family="monospace" font-size="10" fill="#c8c8f0">:</text>
+  <text x="482" y="364" font-family="monospace" font-size="10" fill="#f59e0b">true</text>
+  <text x="386" y="372" font-family="monospace" font-size="10" fill="#c8c8f0">}</text>
+
+  <!-- Badge -->
+  <rect x="290" y="405" width="220" height="30" rx="15" fill="#5865F2" opacity="0.15" stroke="#5865F2" stroke-width="1"/>
+  <text x="400" y="424" font-family="sans-serif" font-size="12" fill="#7289da" text-anchor="middle" font-weight="600">🤖 Automatización desde JSON</text>
+</svg>
